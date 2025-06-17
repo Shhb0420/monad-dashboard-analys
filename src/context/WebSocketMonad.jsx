@@ -68,7 +68,7 @@ export function WebSocketMonad({children}) {
     const analyzedTx = txAnalyzer.analyzeTransaction(txData)
     
     setTransactions(prev => {
-      const updated = [analyzedTx, ...prev].slice(0, 100) // Keep last 1000 tx
+      const updated = [analyzedTx, ...prev].slice(0, 1000) // Keep last 1000 tx
       return updated.filter((t) => t.value != "0.000000")
     })
 

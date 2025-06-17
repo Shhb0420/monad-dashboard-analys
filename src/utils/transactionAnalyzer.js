@@ -1,7 +1,8 @@
-/**
- * Transaction Analyzer for Purple Rain
- * Analyzes transaction types and categorizes them
- */
+import Truck from "../assets/Truck.svg";
+import TruckOther from '../assets/truck-other.svg'
+import TruckContract from '../assets/truck-contract.svg'
+import TruckNft from '../assets/truck-nft.svg'
+import TruckTransaction from '../assets/truck-transaction.svg'
 
 // Known contract signatures for different transaction types
 const CONTRACT_SIGNATURES = {
@@ -52,7 +53,9 @@ export class TransactionAnalyzer {
       category: txType,
       categoryDisplay: this.getCategoryDisplay(txType),
       dropImage: this.getDropImage(txType),
-      color: this.getCategoryColor(txType)
+      color: this.getCategoryColor(txType),
+      lane: Math.floor(Math.random() * 3),
+      animation: Math.random() * 0.5
     }
   }
 
@@ -134,12 +137,11 @@ export class TransactionAnalyzer {
 
   getDropImage(category) {
     const images = {
-      defi: '/drops/defi.png',
-      nft: '/drops/nft.png', 
-      transfer: '/drops/transfer.png',
-      contractCall: '/drops/contract-call.png',
-      contractDeploy: '/drops/contract-deploy.png',
-      other: '/drops/other.png'
+      defi: TruckTransaction,
+      nft: TruckNft, 
+      transfer: Truck,
+      contractCall: TruckContract,
+      other: TruckOther,
     }
     return images[category] || '/raindrop.png'
   }
