@@ -1,0 +1,314 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Keyframes */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes drive {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(100vw - 200px)); }
+}
+
+/* App */
+.dashboard-app {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 50%, #e0e7ff 100%);
+}
+
+.network-status {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,255,0,0.8);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+/* Header */
+.dashboard-header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  color: #374151;
+}
+
+.dashboard-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dashboard-subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+/* Stats Grid */
+.dashboard-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* Card */
+.stat-card {
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.purple {
+  background: linear-gradient(135deg, #faf5ff 0%, #fdf2f8 100%);
+  color: #7c3aed;
+}
+
+.gray {
+  background: linear-gradient(135deg, #f9fafb 0%, #f1f5f9 100%);
+  color: #1f2937;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.stat-title-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.stat-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.icon-container {
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-value-container {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.stat-unit {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.stat-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 60%;
+  background: linear-gradient(90deg, #9333ea, #ec4899);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.road {
+  height: 150px;
+  background: #4a4a4a;
+  position: relative;
+  margin: 50px 0px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 3px solid #333;
+}
+
+.road::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    to right,
+    white 0px,
+    white 30px,
+    transparent 30px,
+    transparent 60px
+  );
+  animation: roadLine 3s linear infinite;
+}
+.finish-line {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: repeating-linear-gradient(
+    to bottom,
+    black 0px,
+    black 10px,
+    white 10px,
+    white 20px
+  );
+  border-radius: 5px;
+}
+
+.finish-flag {
+  position: absolute;
+  right: 0px;
+  top: -20px;
+  font-size: 30px;
+}
+.cargo-counter {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+.truck {
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  animation: moveTruck 5s linear infinite;
+}
+
+.truck::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 15px;
+  width: 30px;
+  height: 50px;
+  /* background: #ff6b35; */
+  border-radius: 5px 0 0 5px;
+}
+
+.truck::after {
+  position: absolute;
+  left: -40px;
+  top: -10px;
+  font-size: 60px;
+  z-index: 10;
+}
+@keyframes moveTruck {
+  0% { left: -150px; }
+  90% { left: calc(100% - 120px); }
+  100% { left: calc(100% + 50px); }
+}
+@keyframes roadLine {
+  0% { transform: translateX(-60px); }
+  100% { transform: translateX(0); }
+}
+@media (max-width: 768px) {
+  .header h1 { font-size: 2em; }
+  .stats-bar { flex-direction: column; gap: 10px; }
+  .road { margin: 20px 10px; }
+  .block-info { margin: 10px; padding: 10px; }
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.logo-monad {
+  width: 160px;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+}
+
